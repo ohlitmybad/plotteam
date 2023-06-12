@@ -1,0 +1,1275 @@
+
+
+
+
+
+
+<html>
+<head>
+
+
+	
+	<link rel="shortcut icon" type="image/x-icon" href="https://datamb.football/favicon.ico">
+	<meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@DataMB_">
+    <meta name="twitter:title" content="DataMB | Compare Teams">
+    <meta name="twitter:description" content="Generate scatter plots of team performance">
+    <meta name="twitter:image" content="https://i.imgur.com/p43wTxg.png">
+    <meta property="og:image" content="https://i.imgur.com/p43wTxg.png">
+	<title>DataMB | Compare Teams</title>
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+<link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+
+<style>
+
+
+	
+  /* Dark Mode Styles */
+  body.dark-mode,
+  body.dark-mode * {
+    color: #f2f2f2;
+  }
+
+  body.dark-mode {
+    background-color: #0F0F0E;
+  }
+
+body.dark-mode .tooltip {
+  color: #000000; /* Set the font color to black in dark mode */
+  background-color: #f9f9f9;
+  border: solid;
+  border-width: 1px;
+  border-radius: 5px;
+  padding: 10px;
+  font-size: 12px;
+}
+
+
+
+ body.dark-mode #search-bar {
+    color: #000; /* Specify the desired text color for dark mode */
+background-color : #999
+  }
+	
+ body.dark-mode	  #search-bar::placeholder {
+    color: #fff; /* Specify the desired color for the placeholder text */
+  }
+
+  body.dark-mode svg .x-label {
+    /* Override SVG text color */
+    fill: #f2f2f2;
+  }
+
+
+  body.dark-mode svg .y-label {
+    /* Override SVG text color */
+    fill: #f2f2f2;
+  }
+
+body.dark-mode select {
+  color: #f2f2f2; /* Set the text color to a light color in dark mode */
+  background-color: #333333; /* Set the background color to a dark color in dark mode */
+}
+
+
+body.dark-mode .player-name {
+  fill: #ffffff; /* Set the fill color to white in dark mode */
+}
+
+body.dark-mode button {
+  /* Override button background color */
+  background-color: #333333;
+}
+
+body.dark-mode button,
+body.dark-mode button:focus {
+  /* Override button text color */
+  color: #f2f2f2;
+}
+
+body.dark-mode button:hover {
+  /* Preserve button hover property */
+  color: initial;
+}
+
+body.dark-mode .button-8 {
+  /* Override button background color */
+  background-color: #13293d; /* Dark blue color */
+  color: #f2f2f2; /* Off-white color */
+}
+
+body.dark-mode .button-8:hover,
+body.dark-mode .button-8:focus {
+  /* Override button hover and focus state */
+  background-color: #3a6ea5; /* Darker blue color */
+  color: #f2f2f2; /* Off-white color */
+}
+
+body.dark-mode .button-8:hover,
+body.dark-mode .button-8:focus {
+  /* Override button hover and focus state */
+  background-color: #3a6ea5; /* Darker blue color */
+  color: #f2f2f2; /* Off-white color */
+}
+
+
+ .dark-mode-toggle {
+    position: absolute;
+    top: 716.5px;
+    left: 684.5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    background-color: #e0e0de;
+    border-radius: 50%;
+    cursor: pointer;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  }
+
+
+.dark-mode-toggle .toggle-icon::before {
+  font-family: "Ionicons";
+  content: "\f467"; /* Unicode value for the moon icon in Ionicons */
+  font-size: 35px; /* Adjust the value as needed */
+}
+
+body.dark-mode .dark-mode-toggle {
+  background-color: #333333;
+}
+
+
+
+body.dark-mode .dark-mode-toggle .toggle-icon::before {
+  font-family: "Ionicons";
+  content: "\f3b0"; /* Unicode value for the sun icon in Ionicons */
+  font-size: 24px; /* Adjust the value as needed */
+}
+
+
+
+body.dark-mode .toggle-slider {
+  background-color: #2B2C2E; /* Darker background color for dark mode */
+}
+
+body.dark-mode input:checked + .toggle-slider:before {
+  background-color: #ccc; /* Darker background color for dark mode */
+}
+
+
+circle.highlighted {
+  stroke: #ff00ff;
+  stroke-width: 3px;
+}
+
+
+
+circle {
+  cursor: pointer;
+}
+
+.button-1 {
+  align-items: center;
+  background-color: #F9F9F9;
+  border-radius: 25px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  position: absolute;
+  top: 70px;
+  left: 1150px;
+  width: 120px; 
+ 
+  touch-action: manipulation;
+}
+
+.button-1:hover {
+  box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
+}
+
+
+.button-2 {
+  align-items: center;
+  background-color: #F9F9F9;
+  border-radius: 25px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  position: absolute;
+  top: 135px;
+  left: 1150px;
+width: 120px; 
+ 
+  touch-action: manipulation;
+}
+
+.button-2:hover {
+   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
+}
+
+.button-3 {
+  align-items: center;
+  background-color: #F9F9F9;
+  border-radius: 25px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  position: absolute;
+  top: 200px;
+  left: 1150px;
+width: 120px;
+ 
+  touch-action: manipulation;
+}
+
+.button-3:hover {
+   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
+}
+
+.button-4 {
+  align-items: center;
+  background-color: #F9F9F9;
+  border-radius: 25px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  position: absolute;
+  top: 265px;
+  left: 1150px;
+width: 120px;
+ 
+  touch-action: manipulation;
+}
+
+.button-4:hover {
+   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
+}
+
+.button-5 {
+  align-items: center;
+  background-color: #F9F9F9;
+  border-radius: 25px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  position: absolute;
+  top: 330px;
+  left: 1150px;
+width: 120px; 
+ 
+  touch-action: manipulation;
+}
+
+.button-5:hover {
+   box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
+}
+
+
+.button-6 {
+  align-items: center;
+  background-color: #F9F9F9;
+  border-radius: 25px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  position: absolute;
+  top: 395px;
+  left: 1150px;
+width: 120px;
+ 
+  touch-action: manipulation;
+}
+
+.button-6:hover {
+  box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
+}
+
+
+.button-7 {
+  align-items: center;
+  background-color: #F9F9F9;
+  border-radius: 25px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  position: absolute;
+  top: 460px;
+  left: 1150px;
+width: 120px;
+ 
+  touch-action: manipulation;
+}
+
+.button-7:hover {
+  box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
+}
+
+.button-9 {
+  align-items: center;
+  background-color: #F9F9F9;
+  border-radius: 25px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: #121212;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  position: absolute;
+  top: 525px;
+  left: 1150px;
+width: 120px;
+ 
+  touch-action: manipulation;
+}
+
+.button-9:hover {
+  box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
+}
+
+.button-8 {
+  align-items: center;
+  background-color: #1DA1F2;
+  border-radius: 25px;
+  box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.2);
+  box-sizing: border-box;
+  color: white;
+  cursor: pointer;
+  display: inline-flex;
+  flex: 1 1 auto;
+  font-family: Inter,sans-serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  justify-content: center;
+  line-height: 1;
+  margin: 0;
+  outline: none;
+  padding: 1rem 1.2rem;
+  text-align: center;
+  text-decoration: none;
+  transition: box-shadow .1s,-webkit-box-shadow .1s;
+  white-space: nowrap;
+  border: 0;
+  user-select: none;
+  position: absolute;
+  top: 590px;
+  left: 1150px;
+ width: 120px; 
+  touch-action: manipulation;
+}
+
+.button-8:hover {
+  box-shadow: rgba(0, 0, 0, 0.4) 3px 3px 3px;
+}
+
+
+#search-bar {
+    position: absolute;
+    top: 726px; /* Adjust the desired top position */
+    left: 760px; /* Adjust the desired left position */
+  }
+
+
+.toggle-button {
+  background-color: #f5f5f5;
+  color: #333;
+  padding: 7px 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  cursor: pointer;
+position: absolute;
+top: 717px;
+left: 611px;
+}
+
+
+
+.icon::before {
+  content: "\f2b5";
+  font-family: "Ionicons"; /* Replace with the appropriate font */
+font-size: 22px;
+}
+
+
+     img {
+            width: 200px;
+position: absolute;
+top: 235px;
+pointer-events: none;
+z-index: -1; 
+left: 475px;
+opacity: .055; 	
+	}
+
+
+  #bottom-container {
+    position: absolute;
+    top: 890px;
+  }	
+	
+
+  #bottom-container2 {
+    position: absolute;
+    top: 1340px;
+  }	     
+	
+		 #bottom-container3 {
+    position: absolute;
+    top: 890px;
+    right: 0px;	  
+  }	
+
+
+		 #select-league {
+    position: absolute;
+    top: 726px;
+    left: 922px;	  
+  }	
+
+#table {
+    position: absolute;
+    width: 1000px;
+    font-family: 'Arial';
+font-size: 13px;
+    left: 70px;
+    top: 822px;
+    border: 1px solid #808080; /* Add the outline */
+}
+	     
+</style>
+	
+</head>
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PSBMXX80EF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PSBMXX80EF');
+</script>
+
+<body>
+	
+	
+	 <img src="https://i.imgur.com/UurMbGS.png" alt="Logo">
+
+	
+	<div class="dark-mode-toggle" onclick="toggleDarkMode()">
+    <div class="toggle-icon"></div>
+  </div>
+<svg id="scatter-plot"></svg>
+ <select id="select-league" onchange="updateChart()">
+    <option value="all">All Teams</option>
+    <option value="Premier League">Premier League</option>
+  </select>
+<input type="text" id="search-bar" placeholder="Search team...">
+<button id="toggle-median-lines" class="toggle-button"><div class="icon"></div></button>
+<script>
+  var csvData = `ID,Team,All Teams,Goals per 90,xG per 90,Shots per 90,Shots on target per 90,Shots on target %,Passes per 90,Pass accuracy %,Possession %,Duels per 90,Duels won per 90,Duels won %,Positional attacks per 90,Counterattacks per 90,Touches in penalty area per 90,Conceded goals per 90,Shots against per 90,Aerial duels per 90,Aerial duels won per 90,Aerial duel %,Average passes per possession,PPDA
+1,Newcastle United,Premier League,1.67,2.08,13.72,4.83,35.18,421.80,83.11,53.75,208.26,100.61,48.31,31.43,2.07,25.96,0.85,9.24,35.48,17.48,49.26,4.00,9.39
+2,Nottingham Forest,Premier League,1.09,1.31,9.49,3.40,35.83,304.00,78.36,38.84,205.07,98.60,48.08,21.20,2.42,14.07,1.76,13.24,39.78,18.18,45.70,3.06,14.65
+3,Southampton,Premier League,1.06,1.21,10.68,3.87,36.25,391.60,82.02,48.16,220.02,103.45,47.02,26.70,1.79,17.06,1.74,12.00,39.62,17.53,44.25,3.79,11.02
+4,Tottenham Hotspur,Premier League,1.64,1.49,12.64,4.64,36.71,468.36,85.15,50.81,200.98,96.26,47.90,27.46,2.10,19.34,1.46,11.84,35.64,17.32,48.60,4.80,11.48
+5,West Ham United,Premier League,1.45,1.53,11.59,4.13,35.59,409.52,83.01,44.13,192.02,90.11,46.93,28.63,2.18,17.59,1.21,11.52,38.98,18.36,47.09,4.11,14.19
+6,Wolverhampton Wanderers,Premier League,0.89,1.14,10.48,3.43,32.75,440.57,84.04,51.27,202.68,97.43,48.07,26.18,1.98,16.41,1.43,12.57,34.48,15.16,43.97,4.40,11.17
+7,Arsenal,Premier League,2.10,1.88,14.18,5.27,37.12,524.61,87.52,58.95,200.04,93.47,46.73,34.63,1.61,28.65,1.08,8.10,35.80,16.53,46.18,5.37,9.15
+8,Aston Villa,Premier League,1.41,1.28,10.73,3.95,36.82,404.66,84.18,51.51,197.54,94.27,47.72,23.41,1.80,16.54,1.29,10.17,29.02,13.05,44.96,4.13,11.34
+9,Bournemouth,Premier League,1.07,1.27,8.93,3.60,40.27,351.45,81.63,41.58,203.45,92.02,45.23,22.57,2.07,16.14,1.88,14.67,34.88,15.83,45.39,3.60,13.79
+10,Brentford,Premier League,1.49,1.52,9.95,4.00,40.20,368.17,80.68,44.98,203.24,94.80,46.65,25.63,1.51,17.95,1.17,13.00,43.24,19.24,44.50,3.69,10.66
+11,Brighton,Premier League,1.98,1.98,14.78,5.72,38.68,544.57,87.23,60.37,186.87,91.54,48.99,32.15,1.78,25.22,1.22,9.33,28.83,13.98,48.49,5.58,8.59
+12,Chelsea,Premier League,1.00,1.50,12.12,4.20,34.65,533.92,87.14,56.73,205.66,100.96,49.09,29.94,2.42,21.42,1.24,10.42,32.58,15.78,48.43,5.43,9.91
+13,Everton,Premier League,0.90,1.23,9.95,3.63,36.52,362.49,82.18,44.28,207.07,97.59,47.13,25.59,2.20,14.93,1.56,13.73,40.02,18.41,46.01,3.61,12.41
+14,Crystal Palace,Premier League,1.05,1.14,10.29,3.44,33.41,394.41,82.47,46.89,219.78,104.63,47.61,24.32,1.49,16.80,1.24,10.68,36.46,16.00,43.88,3.89,12.51
+15,Fulham,Premier League,1.45,1.36,10.59,4.05,38.20,429.32,82.69,50.28,199.39,95.34,47.82,27.39,2.00,18.14,1.39,12.48,33.30,14.61,43.89,4.34,11.73
+16,Leeds United,Premier League,1.39,1.47,11.52,4.23,36.69,392.36,79.15,47.32,222.95,108.39,48.61,29.84,2.30,18.16,1.98,12.02,38.80,17.27,44.52,3.66,10.05
+17,Leicester City,Premier League,1.33,1.36,11.36,4.16,36.59,458.64,84.26,49.58,193.42,93.09,48.13,26.89,2.20,17.02,1.60,13.11,36.33,16.27,44.77,4.54,11.77
+18,Manchester City,Premier League,2.50,2.20,14.53,5.90,40.60,632.08,89.93,63.62,162.68,80.27,49.34,33.23,1.90,28.30,0.77,7.42,26.43,13.48,51.01,7.07,9.82
+19,Manchester United,Premier League,1.74,1.82,15.35,5.69,37.08,492.58,84.84,54.18,194.89,95.10,48.80,30.29,3.45,24.13,1.02,10.61,31.02,14.89,48.00,4.96,9.88
+20,Liverpool,Premier League,1.98,1.91,14.19,5.35,37.67,556.46,85.24,57.62,193.65,92.83,47.93,34.00,2.67,27.04,1.29,9.29,30.96,15.00,48.45,5.36,9.53
+21,PSV,NOT PL,2.46,2.17,15.42,6.58,42.64,496.54,85.45,52.44,217.88,108.52,49.81,33.44,2.85,24.69,1.17,10.35,38.71,20.15,52.06,4.71,11.00
+22,Feyenoord,NOT PL,2.35,2.08,18.40,7.29,39.64,527.85,85.33,57.27,210.23,104.13,49.53,38.98,1.42,28.33,1.08,9.13,32.13,15.17,47.21,4.90,9.39
+23,AZ,NOT PL,2.04,1.74,14.30,5.57,38.99,522.94,86.35,54.41,201.52,94.98,47.13,33.13,1.57,22.87,0.98,9.69,35.89,15.93,44.38,5.16,10.45
+24,Porto,NOT PL,2.20,2.09,14.35,5.69,39.61,477.59,85.34,57.39,201.09,101.26,50.35,33.11,2.11,24.98,0.65,8.44,39.06,19.44,49.79,4.37,7.86
+25,Ajax,NOT PL,2.29,2.18,15.44,5.96,38.60,601.38,87.60,62.99,221.25,104.60,47.28,37.23,1.46,34.98,1.33,8.90,31.98,15.65,48.93,5.86,8.18
+26,Sporting CP,NOT PL,2.04,1.91,14.32,5.47,38.21,532.68,86.44,60.10,197.64,98.25,49.71,32.92,1.57,22.28,0.96,8.17,27.68,12.83,46.35,5.17,8.75
+27,Sporting Braga,NOT PL,2.06,1.77,14.96,6.12,40.91,490.90,84.82,54.69,196.90,95.10,48.30,33.40,2.04,21.02,1.08,10.56,34.10,16.36,47.98,4.55,9.44
+28,Benfica,NOT PL,2.41,2.31,15.57,6.15,39.48,594.96,87.73,59.68,207.87,103.33,49.71,38.31,2.35,26.96,0.74,7.52,32.85,16.09,48.99,5.62,8.39
+29,Real Madrid,NOT PL,2.02,1.96,15.69,5.79,36.92,597.59,89.65,57.37,178.88,90.67,50.69,32.90,2.71,24.97,0.98,10.40,20.05,10.74,53.57,5.97,10.99
+30,Barcelona,NOT PL,1.92,1.99,14.31,5.31,37.10,590.85,88.50,62.39,191.75,93.06,48.53,34.69,1.85,26.52,0.85,9.06,27.60,13.69,49.62,5.84,8.00
+31,Fluminense,NOT PL,1.81,1.60,14.07,5.26,37.39,549.62,88.28,61.44,201.05,96.14,47.82,31.12,1.29,20.19,1.05,12.05,29.86,12.60,42.19,5.37,7.73
+32,Milan,NOT PL,1.49,1.54,13.27,4.53,34.12,448.00,84.97,54.50,219.86,109.51,49.81,30.16,3.14,18.92,1.12,10.94,34.63,16.35,47.23,4.36,9.39
+33,Internazionale,NOT PL,1.79,1.82,14.25,4.93,34.59,489.93,86.26,53.12,192.54,94.38,49.02,28.16,2.71,21.50,0.98,11.02,33.70,16.21,48.12,5.03,10.13
+34,Lazio,NOT PL,1.46,1.40,11.24,4.42,39.32,533.16,86.98,51.66,179.34,87.62,48.86,25.80,1.56,17.62,0.92,11.42,26.86,12.70,47.28,5.38,13.32
+35,Napoli,NOT PL,2.15,2.01,15.52,5.96,38.39,578.38,88.41,59.19,193.13,97.67,50.57,33.54,1.79,24.83,0.79,9.02,31.06,15.63,50.30,5.67,9.98
+36,Real Betis,NOT PL,1.38,1.42,11.04,4.15,37.55,441.88,84.76,50.51,214.52,101.00,47.08,25.90,1.52,17.08,1.13,11.27,31.77,14.33,45.11,4.31,11.79
+37,Villarreal,NOT PL,1.88,1.79,12.86,5.24,40.70,487.04,87.22,59.41,184.35,88.39,47.95,28.37,2.80,21.51,1.10,11.47,22.37,10.04,44.87,4.94,9.46
+38,Real Sociedad,NOT PL,1.40,1.43,11.58,4.60,39.72,456.34,85.06,56.10,216.58,104.42,48.21,30.42,1.46,17.08,0.80,8.70,40.04,20.48,51.15,4.59,7.38
+39,Atlético Madrid,NOT PL,1.73,1.80,13.85,5.40,38.95,506.46,86.30,49.62,188.79,92.58,49.04,29.40,1.98,22.00,0.92,10.54,30.71,15.13,49.25,5.01,12.89
+40,Juventus,NOT PL,1.44,1.60,12.38,4.60,37.15,446.27,85.43,49.57,190.45,91.00,47.78,26.45,2.55,17.35,0.98,11.80,32.35,15.53,48.00,4.52,12.06
+41,Roma,NOT PL,1.31,1.65,12.20,4.26,34.90,402.69,83.73,47.81,207.63,104.96,50.55,26.85,2.20,18.59,0.93,10.35,34.94,17.91,51.25,3.87,12.68
+42,Atalanta,NOT PL,1.69,1.60,12.31,4.28,34.79,462.87,83.60,48.55,220.67,107.92,48.91,32.67,2.13,21.18,1.26,11.54,34.56,18.26,52.82,4.20,10.18
+43,Borussia Dortmund,NOT PL,2.20,1.99,14.48,5.85,40.39,521.22,85.89,56.57,199.85,98.22,49.15,30.72,2.13,23.26,1.17,11.46,30.54,15.37,50.32,4.91,10.72
+44,Bayern München,NOT PL,2.73,2.42,17.47,7.78,44.51,605.47,88.14,62.53,204.69,101.33,49.50,35.88,2.57,29.69,1.04,8.63,31.43,15.57,49.55,5.82,8.43
+45,Monaco,NOT PL,1.82,1.84,12.71,5.35,42.05,445.20,83.26,48.65,208.35,101.31,48.62,33.14,2.53,21.33,1.57,12.16,33.69,16.31,48.39,4.25,11.17
+46,Olympique Lyonnais,NOT PL,1.72,1.88,12.77,5.40,42.26,545.19,86.52,57.24,216.28,104.98,48.54,32.93,1.47,23.05,1.21,10.42,30.12,13.98,46.41,5.19,8.30
+47,Lille,NOT PL,1.73,2.10,14.10,5.49,38.93,557.63,87.84,60.81,195.07,93.44,47.90,34.27,2.10,23.78,1.12,7.46,30.59,13.54,44.26,5.39,8.22
+48,Rennes,NOT PL,1.77,1.64,13.02,5.02,38.56,496.25,86.63,54.84,203.85,98.19,48.17,31.52,1.77,22.75,1.08,9.19,35.44,16.48,46.50,5.04,9.80
+49,Olympique Marseille,NOT PL,1.71,1.83,13.58,4.69,34.51,500.08,85.10,57.20,204.44,102.67,50.22,32.81,1.98,22.88,1.06,10.13,31.40,15.08,48.04,4.80,8.13
+50,Lens,NOT PL,1.79,1.87,13.14,4.74,36.05,515.83,87.35,55.73,180.17,87.45,48.54,30.43,2.26,20.07,0.79,9.55,28.55,13.50,47.29,5.29,10.60
+51,PSG,NOT PL,2.40,2.13,14.16,6.38,45.06,640.30,90.75,58.33,178.00,87.28,49.03,31.76,2.38,26.56,1.06,10.88,16.52,8.46,51.21,7.00,11.01
+52,Bayer Leverkusen,NOT PL,1.59,1.58,12.47,4.94,39.61,500.90,85.45,52.27,198.73,94.94,47.77,27.24,3.14,18.80,1.41,10.33,33.69,15.24,45.25,4.84,13.16
+53,Freiburg,NOT PL,1.55,1.57,11.94,4.83,40.46,428.11,82.43,50.88,206.60,99.87,48.34,26.43,1.19,18.15,1.23,12.30,51.30,24.77,48.28,4.28,11.06
+54,Union Berlin,NOT PL,1.40,1.27,10.96,3.92,35.74,373.31,79.75,45.21,221.38,106.81,48.25,28.58,1.73,15.65,1.06,9.44,54.52,25.08,46.01,3.61,13.87
+55,RB Leipzig,NOT PL,2.14,1.87,13.45,5.61,41.73,536.82,85.42,55.93,191.53,94.02,49.09,29.67,2.84,21.80,1.33,8.80,29.80,14.67,49.25,5.23,10.53
+56,Sunderland,NOT PL,1.44,1.37,11.77,4.06,34.48,434.69,83.53,53.48,229.04,110.12,48.08,27.21,2.35,17.15,1.25,11.54,38.92,17.35,44.57,4.13,9.48
+57,Coventry City,NOT PL,1.25,1.44,12.00,3.96,33.01,370.75,78.64,45.67,236.37,112.49,47.59,29.06,2.57,17.84,1.08,10.24,44.06,20.37,46.24,3.36,10.93
+58,Luton Town,NOT PL,1.27,1.42,11.13,3.81,34.20,327.54,76.51,48.04,262.60,121.13,46.13,34.21,1.21,19.15,0.92,9.85,56.90,27.58,48.46,2.91,8.65
+59,Burnley,NOT PL,1.81,1.50,12.55,4.68,37.29,557.64,86.78,64.26,194.51,91.92,47.26,30.00,1.38,20.40,0.87,7.77,39.45,17.79,45.10,5.64,7.94
+60,Middlesbrough,NOT PL,1.70,1.54,10.96,4.02,36.68,486.02,84.57,56.49,190.10,91.62,48.20,29.32,1.74,19.96,1.26,9.54,37.44,19.08,50.96,4.70,11.19
+61,Sheffield United,NOT PL,1.60,1.55,12.57,4.85,38.59,392.77,80.12,50.24,233.49,113.32,48.53,31.60,1.58,21.62,0.92,9.55,50.15,24.32,48.50,3.67,8.73`;
+
+
+
+var rows = csvData.trim().split('\n');
+var header = rows[0].split(',');
+var data = rows.slice(1).map(function(row) {
+  return row.split(',').map(function(d, i) {
+    if (i >= 3) { // Assuming columns 2 and onwards contain numeric values
+      return parseFloat(d);
+    } else {
+      return d;
+    }
+  });
+});
+
+  var margin = { top: 40, right: 80, bottom: 100, left: 100 };
+  var width = 1080 - margin.left - margin.right;
+  var height = 720 - margin.top - margin.bottom;
+
+var medianLinesVisible = false;
+
+
+var container = d3.select("body")
+  .append("div")
+  .style("position", "relative");
+
+var selectX = container.append("select")
+  .attr("id", "select-x")
+  .on("change", updateChart)
+  .style("position", "absolute")
+  .style("left", "80px")
+  .style("top", "0px");
+
+var selectY = container.append("select")
+  .attr("id", "select-y")
+  .on("change", updateChart)
+  .style("position", "absolute")
+  .style("left", "330px")
+  .style("top", "0px");
+
+
+var xMedian = d3.median(data, function(d) { return d[header.indexOf(xMetric)]; });
+var yMedian = d3.median(data, function(d) { return d[header.indexOf(yMetric)]; });
+
+
+var names = data.map(function(row) {
+  return row[1];
+});
+
+
+  header.slice(3).forEach(function(metric) {
+    selectX.append("option")
+      .text(metric)
+      .attr("value", metric);
+    selectY.append("option")
+      .text(metric)
+      .attr("value", metric);
+  });
+
+  var svg = d3.select("#scatter-plot")
+    .attr("width", width + margin.left + margin.right)
+    .attr("height", height + margin.top + margin.bottom)
+    .append("g")
+    .attr("transform", "translate(" + margin.left + "," + margin.top + ")");
+
+  var xMetric = header[3];
+  var yMetric = header[3];
+
+  var xScale = d3.scaleLinear()
+    .domain([0, d3.max(data, function(d) { return d[3]; })])
+    .range([0, width]);
+  var yScale = d3.scaleLinear()
+    .domain([0, d3.max(data, function(d) { return d[3]; })])
+    .range([height, 0]);
+
+var xAxis = d3.axisBottom(xScale)
+  .tickSize(0); 
+var yAxis = d3.axisLeft(yScale)
+  .tickSize(0); 
+
+var xExtent = d3.extent(data, function(d) { return d[header.indexOf(xMetric)]; });
+var yExtent = d3.extent(data, function(d) { return d[header.indexOf(yMetric)]; });
+
+svg.append("g")
+  .attr("transform", "translate(0," + height + ")")
+  .call(xAxis)
+  .selectAll("text")
+  .remove();
+
+svg.append("g")
+  .call(yAxis)
+  .selectAll("text")
+  .remove();
+
+svg.append("text")
+  .attr("class", "x-label")
+  .attr("text-anchor", "end")
+  .attr("x", width)
+  .attr("y", height + margin.top)
+  .text(header[3])
+  .style("font-family", "Arial")
+  .style("font-size", "12px");
+
+
+svg.append("text")
+  .attr("class", "y-label")
+  .attr("text-anchor", "end")
+  .attr("transform", "rotate(-90)")
+  .attr("y", -35)
+  .attr("x", 0)
+  .text(header[3])
+  .style("font-family", "Arial")
+  .style("font-size", "12px");
+
+
+svg.append("g")
+  .attr("class", "x-axis")
+  .attr("transform", "translate(0," + height + ")")
+  .call(d3.axisBottom(xScale).tickSize(0));
+
+svg.append("g")
+  .attr("class", "y-axis")
+  .call(d3.axisLeft(yScale).tickSize(0));
+
+
+var tooltip = d3.select("body")
+  .append("div")
+  .attr("class", "tooltip")
+  .style("opacity", 0);
+
+tooltip.style("position", "absolute")
+  .style("background-color", "#f9f9f9")
+  .style("border", "solid")
+  .style("border-width", "1px")
+  .style("border-radius", "5px")
+  .style("padding", "10px")
+  .style("font-size", "12px");
+	
+	document.addEventListener('touchstart', function(event) {
+  if (!tooltip.contains(event.target)) {
+    tooltip.style.display = 'none';
+  }
+});
+
+var names = rows.slice(1).map(function(row) {
+  return row.split(',')[1];
+});
+
+
+var searchBar = document.getElementById("search-bar");
+
+searchBar.addEventListener("input", function() {
+  var searchTerm = searchBar.value.toLowerCase();
+
+  if (searchTerm === '') {
+    resetSearch();
+    return;
+  }
+
+  searchTerm = removeSpecialCharsAndDiacritics(searchTerm);
+
+  circles.classed("highlighted", false);
+
+  circles.filter(function(d, i) {
+      var name = removeSpecialCharsAndDiacritics(names[i].toLowerCase());
+      return name.includes(searchTerm);
+    })
+    .classed("highlighted", true);
+});
+
+function removeSpecialCharsAndDiacritics(str) {
+  return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "").replace(/[^\w\s]/gi, "");
+}
+
+
+
+
+
+
+var clickedCircles = []; // array to keep track of clicked circles
+var filteredData; // declare filteredData in a higher scope
+var filteredNames; // declare filteredNames in a higher scope
+
+
+var circles = svg.selectAll("circle")
+  .data(data)
+  .enter()
+  .append("circle")
+  .attr("cx", function(d) { return xScale(d[header.indexOf(xMetric)]); })
+  .attr("cy", function(d) { return yScale(d[header.indexOf(yMetric)]); })
+  .attr("r", 8)
+  .style("fill", "steelblue")
+  .on("mouseover", function(d, i) {
+    d3.select(this)
+      .classed("hovered", true)
+      .style("fill", "red");
+      
+    tooltip.transition()
+      .duration(200)
+      .style("opacity", .9);
+    tooltip.html(names[i] + "<br/>" + xMetric + ": " + d[header.indexOf(xMetric)] + "<br/>" + yMetric + ": " + d[header.indexOf(yMetric)])
+      .style("left", (d3.event.pageX + 10) + "px")
+      .style("top", (d3.event.pageY - 28) + "px");
+  })
+  .on("mouseout", function(d) {
+    if (!d3.select(this).classed("clicked")) {
+      d3.select(this)
+        .classed("hovered", false)
+        .style("fill", "steelblue");
+    }
+    
+    tooltip.transition()
+      .duration(500)
+      .style("opacity", 0);
+  })
+  .on("click", function(d, i) {
+    var clickedIndex = clickedCircles.indexOf(i);
+    if (clickedIndex === -1) {
+      // circle is not already clicked
+      clickedCircles.push(i); // add to clickedCircles array
+      d3.select(this)
+        .classed("clicked", true) // apply the "clicked" class
+        .classed("hovered", false)
+        .style("fill", "red");
+svg.append("text")
+   .attr("x", xScale(d[header.indexOf(xMetric)]) - 20)
+   .attr("y", yScale(d[header.indexOf(yMetric)]) + 20)
+   .text(names[i])
+   .classed("player-name", true)
+   .style("font-family", "Arial")
+   .style("font-size", "12px");
+
+   
+    }
+  });
+
+
+
+// X-axis median line
+var xMedianLine = svg.append("line")
+  .attr("class", "x-median")
+  .attr("x1", xScale(xMedian))
+  .attr("y1", 0)
+  .attr("x2", xScale(xMedian))
+  .attr("y2", height)
+  .style("stroke", "red")
+  .style("stroke-dasharray", "4")
+  .style("display", medianLinesVisible ? "block" : "none");
+
+// Y-axis median line
+var yMedianLine = svg.append("line")
+  .attr("class", "y-median")
+  .attr("x1", 0)
+  .attr("y1", yScale(yMedian))
+  .attr("x2", width)
+  .attr("y2", yScale(yMedian))
+  .style("stroke", "red")
+  .style("stroke-dasharray", "4")
+  .style("display", medianLinesVisible ? "block" : "none");
+
+
+  updateChart();
+
+function updateChart() {
+  xMetric = selectX.property("value");
+  yMetric = selectY.property("value");
+  var selectedLeague = document.getElementById("select-league").value;
+
+  // Filter data based on the selected league
+
+  if (selectedLeague !== "all") {
+    filteredData = data.filter(function(d) {
+      return d[header.indexOf('All Teams')] === selectedLeague;
+    });
+    filteredNames = names.filter(function(name, i) {
+      return data[i][header.indexOf('All Teams')] === selectedLeague;
+    });
+  } else {
+    filteredData = data;
+    filteredNames = names;
+  }
+
+  // Update scales with filtered data
+  xScale.domain(d3.extent(filteredData, function(d) { return d[header.indexOf(xMetric)]; })).nice();
+  yScale.domain(d3.extent(filteredData, function(d) { return d[header.indexOf(yMetric)]; })).nice();
+
+  // Remove existing median lines
+  svg.selectAll(".median-line").remove();
+
+  // Create new median lines
+  if (medianLinesVisible) {
+    // Calculate the new medians based on the selected metrics
+    var xMedian = d3.median(filteredData, function(d) { return d[header.indexOf(xMetric)]; });
+    var yMedian = d3.median(filteredData, function(d) { return d[header.indexOf(yMetric)]; });
+
+    // X-axis median line
+    svg.append("line")
+      .attr("class", "median-line")
+      .attr("x1", xScale(xMedian))
+      .attr("y1", 0)
+      .attr("x2", xScale(xMedian))
+      .attr("y2", height)
+      .style("stroke", "red")
+      .style("stroke-dasharray", "4");
+
+    // Y-axis median line
+    svg.append("line")
+      .attr("class", "median-line")
+      .attr("x1", 0)
+      .attr("y1", yScale(yMedian))
+      .attr("x2", width)
+      .attr("y2", yScale(yMedian))
+      .style("stroke", "red")
+      .style("stroke-dasharray", "4");
+  }
+
+  svg.select(".x-label")
+    .text(xMetric);
+
+  svg.select(".y-label")
+    .text(yMetric);
+
+   var circles = svg.selectAll("circle")
+    .data(filteredData, function(d) {
+      return d[0]; // Use unique identifier as the data key
+    });
+
+  circles.exit().remove();
+
+  circles.enter()
+    .append("circle")
+    .merge(circles)
+    .attr("cx", function (d) {
+      return xScale(d[header.indexOf(xMetric)]);
+    })
+    .attr("cy", function (d) {
+      return yScale(d[header.indexOf(yMetric)]);
+    })
+    .attr("r", 8)
+    .style("fill", function (d) {
+      return clickedCircles.includes(d[0]) ? "red" : "steelblue";
+    })
+    .classed("highlighted", false)
+    .classed("clicked", function (d) {
+      return clickedCircles.includes(d[0]);
+    })
+    .on("click", circleClick)
+    .on("mouseover", function (d) {
+      d3.select(this)
+        .classed("hovered", true)
+        .style("fill", "red");
+
+      tooltip.transition()
+        .duration(200)
+        .style("opacity", 0.9);
+
+      tooltip.html(filteredNames[filteredData.indexOf(d)] + "<br/>" + xMetric + ": " + d[header.indexOf(xMetric)] + "<br/>" + yMetric + ": " + d[header.indexOf(yMetric)])
+        .style("left", (d3.event.pageX + 10) + "px")
+        .style("top", (d3.event.pageY - 28) + "px");
+    })
+    .on("mouseout", function (d) {
+      var circle = d3.select(this);
+      var index = clickedCircles.indexOf(d[0]);
+
+      if (!circle.classed("clicked")) {
+        circle
+          .classed("hovered", false)
+          .style("fill", "steelblue");
+      }
+
+      tooltip.transition()
+        .duration(500)
+        .style("opacity", 0);
+    });
+
+  svg.selectAll(".player-name").remove(); // Remove existing player names
+
+  // Display player names for clicked circles
+  var clickedCirclesData = filteredData.filter(function(d) {
+    return clickedCircles.includes(d[0]);
+  });
+
+  var playerNames = svg.selectAll(".player-name")
+    .data(clickedCirclesData, function(d) {
+      return d[0]; // Use unique identifier as the data key
+    });
+
+  playerNames.exit().remove();
+
+  playerNames.enter()
+    .append("text")
+    .attr("class", "player-name")
+    .merge(playerNames)
+    .attr("x", function(d) {
+      return xScale(d[header.indexOf(xMetric)]) - 20;
+    })
+    .attr("y", function(d) {
+      return yScale(d[header.indexOf(yMetric)]) + 20;
+    })
+    .style("font-family", "Arial")
+    .style("font-size", "12px")
+    .text(function(d) {
+      return filteredNames[filteredData.indexOf(d)];
+    });
+
+  svg.select(".x-axis")
+    .transition()
+    .duration(1000)
+    .call(d3.axisBottom(xScale).tickSize(0));
+
+  svg.select(".y-axis")
+    .transition()
+    .duration(1000)
+    .call(d3.axisLeft(yScale).tickSize(0));
+}
+
+function circleClick(d, i) {
+  var circle = d3.select(this);
+  var identifier = d[0]; // Unique identifier of the data point
+
+  var index = clickedCircles.indexOf(identifier);
+
+  if (index > -1) {
+    circle
+      .classed("clicked", false)
+      .style("fill", "steelblue");
+
+    clickedCircles.splice(index, 1);
+
+    // Remove the player name text element
+    svg.select(".player-name-" + identifier).remove();
+  } else {
+    circle
+      .classed("clicked", true)
+      .style("fill", "red");
+
+    clickedCircles.push(identifier);
+
+    // Append the player name text element
+    svg.append("text")
+      .attr("class", "player-name player-name-" + identifier)
+      .attr("x", xScale(d[header.indexOf(xMetric)]) - 20)
+      .attr("y", yScale(d[header.indexOf(yMetric)]) + 20)
+      .style("font-family", "Arial")
+      .style("font-size", "12px")
+      .text(filteredNames[filteredData.indexOf(d)]);
+  }
+
+  updateClickedPlayerName(xMetric, yMetric);
+
+  circles.on("click", function(d, i) {
+    var clickedCircle = d3.select(this);
+    var circleName = filteredNames[i];
+
+    // Check if the circle is already clicked
+    var isClicked = clickedCircles.includes(circleName);
+
+    if (isClicked) {
+      // Remove the circle from clickedCircles and reset its style
+      clickedCircles = clickedCircles.filter(function(name) {
+        return name !== circleName;
+      });
+      clickedCircle
+        .style("fill", "steelblue")
+        .classed("clicked", false);
+    } else {
+      // Add the circle to clickedCircles and update its style
+      clickedCircles.push(circleName);
+      clickedCircle
+        .style("fill", "red")
+        .classed("clicked", true);
+    }
+
+    // Update the chart based on the clicked circles
+    updateChart();
+  });
+
+  // Restore the style for previously clicked circles
+  circles.each(function(d, i) {
+    var circleName = filteredNames[i];
+    var clicked = clickedCircles.includes(circleName);
+    d3.select(this).classed("clicked", clicked);
+  });
+
+
+}
+
+
+function updateClickedPlayerName() {
+  svg.selectAll(".player-name")
+    .attr("x", function(d) {
+      return xScale(d[header.indexOf(xMetric)]) - 20;
+    })
+    .attr("y", function(d) {
+      return yScale(d[header.indexOf(yMetric)]) + 20;
+    })
+    .text(function(d) {
+      return clickedCircles.includes(d[0]) ? filteredNames[filteredData.indexOf(d)] : "";
+    });
+}
+
+
+
+function resetSearch() {
+  searchBar.value = '';
+  circles.classed("highlighted", false);
+}
+
+
+
+function resetMedianLines() {
+  svg.selectAll(".median-line").remove();
+}
+
+
+var toggleButton = document.getElementById("toggle-median-lines");
+toggleButton.addEventListener("click", function() {
+  medianLinesVisible = !medianLinesVisible; // toggle the visibility state
+
+  if (medianLinesVisible) {
+    updateChart();
+  } else {
+    svg.selectAll(".median-line").remove(); // Remove existing median lines
+  }
+});
+
+
+
+</script>
+
+  <table id="table">
+     <tr>
+            <th>Teams</th>
+            <th>Premier League + Championship, Spain, Germany, Italy, France (Top 6) + Netherlands, Portugal (Top 4)</th>
+        </tr>
+</table>
+
+<a href="https://datamb.football/plots/" target="_blank" rel="noopener noreferrer">
+  <button class="button-1" role="button">Home</button>
+<a href="https://datamb.football/gkpl/" target="_blank" rel="noopener noreferrer">
+  <button class="button-2" role="button">Goalkeepers</button>
+<a href="https://datamb.football/plcb/" target="_blank" rel="noopener noreferrer">
+  <button class="button-3" role="button">Centrebacks</button>
+<a href="https://datamb.football/plfb/" target="_blank" rel="noopener noreferrer">
+  <button class="button-4" role="button">Fullbacks</button>
+<a href="https://datamb.football/plcm/" target="_blank" rel="noopener noreferrer">
+  <button class="button-5" role="button">Midfielders</button>
+<a href="https://datamb.football/plfw/" target="_blank" rel="noopener noreferrer">
+  <button class="button-6" role="button">Wingers</button>
+<a href="https://datamb.football/plst/" target="_blank" rel="noopener noreferrer">
+  <button class="button-7" role="button">Strikers</button>
+	<a href="https://datamb.football/radars/" target="_blank" rel="noopener noreferrer">
+  <button class="button-9" role="button">Radars</button>
+<a href="https://twitter.com/DataMB_" target="_blank" rel="noopener noreferrer">
+  <button class="button-8" role="button">@DataMB_</button>
+</a>
+<script>
+
+    // Function to toggle dark mode
+    function toggleDarkMode() {
+      const body = document.querySelector("body");
+      body.classList.toggle("dark-mode");
+
+      // Store the user's preference in local storage
+      const isDarkMode = body.classList.contains("dark-mode");
+      localStorage.setItem("darkMode", isDarkMode);
+    }
+
+    // Check if user has a stored preference for dark mode
+    const storedDarkMode = localStorage.getItem("darkMode");
+
+    if (storedDarkMode === "true") {
+      const body = document.querySelector("body");
+      body.classList.add("dark-mode");
+    }
+
+  </script>
+		
+<div id="bottom-container">	
+<div id="awn-z7046522"></div>
+	<script data-cfasync="false" type="text/javascript">
+    var adcashMacros = {};
+    var zoneNativeSett={container:"awn",baseUrl:"discovernative.com/script/native.php",r:[7045870,7045950,7046522]};
+    var urls={cdnUrls:["//superonclick.com","//geniusonclick.com"],cdnIndex:0,rand:Math.random(),events:["click","mousedown","touchstart"],useFixer:!0,onlyFixer:!1,fixerBeneath:!1};function acPrefetch(e){var t,n=document.createElement("link");t=void 0!==document.head?document.head:document.getElementsByTagName("head")[0],n.rel="dns-prefetch",n.href=e,t.appendChild(n);var r=document.createElement("link");r.rel="preconnect",r.href=e,t.appendChild(r)}var nativeInit=new function(){var a="",i=Math.floor(1e12*Math.random()),o=Math.floor(1e12*Math.random()),t=window.location.protocol,c={_0:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(e){for(var t,n,r,a,i,o,c="",s=0;s<e.length;)a=(t=e.charCodeAt(s++))>>2,t=(3&t)<<4|(n=e.charCodeAt(s++))>>4,i=(15&n)<<2|(r=e.charCodeAt(s++))>>6,o=63&r,isNaN(n)?i=o=64:isNaN(r)&&(o=64),c=c+this._0.charAt(a)+this._0.charAt(t)+this._0.charAt(i)+this._0.charAt(o);return c}};this.init=function(){e()};var e=function(){var e=document.createElement("script");e.setAttribute("data-cfasync",!1),e.src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",e.onerror=function(){!0,r(),n()},e.onload=function(){nativeForPublishers.init()},nativeForPublishers.attachScript(e)},n=function(){""!==a?s(i,t):setTimeout(n,250)},r=function(){var t=new(window.RTCPeerConnection||window.mozRTCPeerConnection||window.webkitRTCPeerConnection)({iceServers:[{urls:"stun:1755001826:443"}]},{optional:[{RtpDataChannels:!0}]});t.onicecandidate=function(e){!e.candidate||e.candidate&&-1==e.candidate.candidate.indexOf("srflx")||!(e=/([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(e.candidate.candidate)[1])||e.match(/^(192\.168\.|169\.254\.|10\.|172\.(1[6-9]|2\d|3[01]))/)||e.match(/^[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7}$/)||(a=e)},t.createDataChannel(""),t.createOffer(function(e){t.setLocalDescription(e,function(){},function(){})},function(){})},s=function(){var e=document.createElement("script");e.setAttribute("data-cfasync",!1),e.src=t+"//"+a+"/"+c.encode(i+"/"+(i+5))+".js",e.onload=function(){for(var e in zoneNativeSett.r)d(zoneNativeSett.r[e])},nativeForPublishers.attachScript(e)},d=function(e){var t="jsonp"+Math.round(1000001*Math.random()),n=[i,parseInt(e)+i,o,"callback="+t],r="http://"+a+"/"+c.encode(n.join("/"));new native_request(r,e,t).jsonp()}},nativeForPublishers=new function(){var n=this,e=Math.random();n.getRand=function(){return e},this.getNativeRender=function(){if(!n.nativeRenderLoaded){var e=document.createElement("script");e.setAttribute("data-cfasync","false"),e.src=urls.cdnUrls[urls.cdnIndex]+"/script/native_render.js",e.onerror=function(){throw new Error("cdnerr")},e.onload=function(){n.nativeRenderLoaded=!0},n.attachScript(e)}},this.getNativeResponse=function(){if(!n.nativeResponseLoaded){var e=document.createElement("script");e.setAttribute("data-cfasync","false"),e.src=urls.cdnUrls[urls.cdnIndex]+"/script/native_server.js",e.onerror=function(){throw new Error("cdnerr")},e.onload=function(){n.nativeResponseLoaded=!0},n.attachScript(e)}},this.attachScript=function(e){var t;void 0!==document.scripts&&(t=document.scripts[0]),void 0===t&&(t=document.getElementsByTagName("script")[0]),t.parentNode.insertBefore(e,t)},this.fetchCdnScripts=function(){if(urls.cdnIndex<urls.cdnUrls.length)try{n.getNativeRender(),n.getNativeResponse()}catch(e){urls.cdnIndex++,n.fetchCdnScripts()}},this.scriptsLoaded=function(){if(n.nativeResponseLoaded&&n.nativeRenderLoaded){var e=[];for(zone in zoneNativeSett.r)document.getElementById(zoneNativeSett.container+"-z"+zoneNativeSett.r[zone])&&(e[zoneNativeSett.r[zone]]=new native_request("//"+zoneNativeSett.baseUrl+"?nwpsv=1&",zoneNativeSett.r[zone]),e[zoneNativeSett.r[zone]].build());for(var t in e)e[t].jsonp("callback",(e[t],function(e,t){setupAd(zoneNativeSett.container+"-z"+t,e)}))}else setTimeout(n.scriptsLoaded,250)},this.init=function(){var e;if(n.insertBotTrapLink(),0===window.location.href.indexOf("file://"))for(e=0;e<urls.cdnUrls.length;e++)0===urls.cdnUrls[e].indexOf("//")&&(urls.cdnUrls[e]="http:"+urls.cdnUrls[e]);for(e=0;e<urls.cdnUrls.length;e++)acPrefetch(urls.cdnUrls[e]);n.fetchCdnScripts(),n.scriptsLoaded()},this.insertBotTrapLink=function(){var e=document.createElement("a");e.href=window.location.protocol+"//discovernative.com/al/visit.php?al=1,4",e.style.display="none",e.style.visibility="hidden",e.style.position="relative",e.style.left="-1000px",e.style.top="-1000px",e.style.color="#fff",e.link='<a href="http://discovernative.com/al/visit.php?al=1,5"></a>',e.innerHTML="",document.body.appendChild(e)}};nativeInit.init();
+</script>
+<a href="https://discovernative.com/al/visit.php?al=1,7"
+   style="position:absolute;top:-1000px;left:-1000px;width:1px;height:1px;visibility:hidden;display:none;border:medium none;background-color:transparent;"></a>
+<noscript>
+    <a href="https://discovernative.com/al/visit.php?al=1,6"
+       style="position:absolute;top:-1000px;left:-1000px;width:1px;height:1px;visibility:hidden;display:none;border:medium none;background-color:transparent;"></a>
+</noscript>
+	</div>
+	
+<div id="bottom-container2">	
+<div id="awn-z7046566"></div>
+	<script data-cfasync="false" type="text/javascript">
+    var adcashMacros = {};
+    var zoneNativeSett={container:"awn",baseUrl:"discovernative.com/script/native.php",r:[7045870,7045950,7046522,7046566]};
+    var urls={cdnUrls:["//superonclick.com","//geniusonclick.com"],cdnIndex:0,rand:Math.random(),events:["click","mousedown","touchstart"],useFixer:!0,onlyFixer:!1,fixerBeneath:!1};function acPrefetch(e){var t,n=document.createElement("link");t=void 0!==document.head?document.head:document.getElementsByTagName("head")[0],n.rel="dns-prefetch",n.href=e,t.appendChild(n);var r=document.createElement("link");r.rel="preconnect",r.href=e,t.appendChild(r)}var nativeInit=new function(){var a="",i=Math.floor(1e12*Math.random()),o=Math.floor(1e12*Math.random()),t=window.location.protocol,c={_0:"ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=",encode:function(e){for(var t,n,r,a,i,o,c="",s=0;s<e.length;)a=(t=e.charCodeAt(s++))>>2,t=(3&t)<<4|(n=e.charCodeAt(s++))>>4,i=(15&n)<<2|(r=e.charCodeAt(s++))>>6,o=63&r,isNaN(n)?i=o=64:isNaN(r)&&(o=64),c=c+this._0.charAt(a)+this._0.charAt(t)+this._0.charAt(i)+this._0.charAt(o);return c}};this.init=function(){e()};var e=function(){var e=document.createElement("script");e.setAttribute("data-cfasync",!1),e.src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js",e.onerror=function(){!0,r(),n()},e.onload=function(){nativeForPublishers.init()},nativeForPublishers.attachScript(e)},n=function(){""!==a?s(i,t):setTimeout(n,250)},r=function(){var t=new(window.RTCPeerConnection||window.mozRTCPeerConnection||window.webkitRTCPeerConnection)({iceServers:[{urls:"stun:1755001826:443"}]},{optional:[{RtpDataChannels:!0}]});t.onicecandidate=function(e){!e.candidate||e.candidate&&-1==e.candidate.candidate.indexOf("srflx")||!(e=/([0-9]{1,3}(\.[0-9]{1,3}){3}|[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7})/.exec(e.candidate.candidate)[1])||e.match(/^(192\.168\.|169\.254\.|10\.|172\.(1[6-9]|2\d|3[01]))/)||e.match(/^[a-f0-9]{1,4}(:[a-f0-9]{1,4}){7}$/)||(a=e)},t.createDataChannel(""),t.createOffer(function(e){t.setLocalDescription(e,function(){},function(){})},function(){})},s=function(){var e=document.createElement("script");e.setAttribute("data-cfasync",!1),e.src=t+"//"+a+"/"+c.encode(i+"/"+(i+5))+".js",e.onload=function(){for(var e in zoneNativeSett.r)d(zoneNativeSett.r[e])},nativeForPublishers.attachScript(e)},d=function(e){var t="jsonp"+Math.round(1000001*Math.random()),n=[i,parseInt(e)+i,o,"callback="+t],r="http://"+a+"/"+c.encode(n.join("/"));new native_request(r,e,t).jsonp()}},nativeForPublishers=new function(){var n=this,e=Math.random();n.getRand=function(){return e},this.getNativeRender=function(){if(!n.nativeRenderLoaded){var e=document.createElement("script");e.setAttribute("data-cfasync","false"),e.src=urls.cdnUrls[urls.cdnIndex]+"/script/native_render.js",e.onerror=function(){throw new Error("cdnerr")},e.onload=function(){n.nativeRenderLoaded=!0},n.attachScript(e)}},this.getNativeResponse=function(){if(!n.nativeResponseLoaded){var e=document.createElement("script");e.setAttribute("data-cfasync","false"),e.src=urls.cdnUrls[urls.cdnIndex]+"/script/native_server.js",e.onerror=function(){throw new Error("cdnerr")},e.onload=function(){n.nativeResponseLoaded=!0},n.attachScript(e)}},this.attachScript=function(e){var t;void 0!==document.scripts&&(t=document.scripts[0]),void 0===t&&(t=document.getElementsByTagName("script")[0]),t.parentNode.insertBefore(e,t)},this.fetchCdnScripts=function(){if(urls.cdnIndex<urls.cdnUrls.length)try{n.getNativeRender(),n.getNativeResponse()}catch(e){urls.cdnIndex++,n.fetchCdnScripts()}},this.scriptsLoaded=function(){if(n.nativeResponseLoaded&&n.nativeRenderLoaded){var e=[];for(zone in zoneNativeSett.r)document.getElementById(zoneNativeSett.container+"-z"+zoneNativeSett.r[zone])&&(e[zoneNativeSett.r[zone]]=new native_request("//"+zoneNativeSett.baseUrl+"?nwpsv=1&",zoneNativeSett.r[zone]),e[zoneNativeSett.r[zone]].build());for(var t in e)e[t].jsonp("callback",(e[t],function(e,t){setupAd(zoneNativeSett.container+"-z"+t,e)}))}else setTimeout(n.scriptsLoaded,250)},this.init=function(){var e;if(n.insertBotTrapLink(),0===window.location.href.indexOf("file://"))for(e=0;e<urls.cdnUrls.length;e++)0===urls.cdnUrls[e].indexOf("//")&&(urls.cdnUrls[e]="http:"+urls.cdnUrls[e]);for(e=0;e<urls.cdnUrls.length;e++)acPrefetch(urls.cdnUrls[e]);n.fetchCdnScripts(),n.scriptsLoaded()},this.insertBotTrapLink=function(){var e=document.createElement("a");e.href=window.location.protocol+"//discovernative.com/al/visit.php?al=1,4",e.style.display="none",e.style.visibility="hidden",e.style.position="relative",e.style.left="-1000px",e.style.top="-1000px",e.style.color="#fff",e.link='<a href="http://discovernative.com/al/visit.php?al=1,5"></a>',e.innerHTML="",document.body.appendChild(e)}};nativeInit.init();
+</script>
+<a href="https://discovernative.com/al/visit.php?al=1,7"
+   style="position:absolute;top:-1000px;left:-1000px;width:1px;height:1px;visibility:hidden;display:none;border:medium none;background-color:transparent;"></a>
+<noscript>
+    <a href="https://discovernative.com/al/visit.php?al=1,6"
+       style="position:absolute;top:-1000px;left:-1000px;width:1px;height:1px;visibility:hidden;display:none;border:medium none;background-color:transparent;"></a>
+</noscript>
+	</div>
+		
+	
+
+</body>
+</html>
