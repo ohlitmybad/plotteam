@@ -1473,17 +1473,7 @@ var _0x5dd5d4=_0x18df;(function(_0x5ef1d2,_0x1381d2){var _0x38464c=_0x18df,_0x19
             }
           });
     
-          // Update placeholders for elements with data-i18n-placeholder attribute
-          document.querySelectorAll('[data-i18n-placeholder]').forEach(element => {
-            const keys = element.getAttribute('data-i18n-placeholder').split('.');
-            let value = translations;
-            for (const key of keys) {
-              value = value[key];
-            }
-            if (value) {
-              element.placeholder = value;
-            }
-          });
+
     
           // Update meta tags
           document.title = translations.meta.title;
