@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "title": "DataMB | Gráficos de Equipos",
+    "description": "Gráficos de estadísticas de equipos de las Top 7 Ligas. Visualiza el rendimiento de equipos y analiza múltiples métricas como Goles, Goles concedidos, xG, Disparos a puerta, Presión, Duelos defensivos, Precisión de pases y más para equipos de Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Primeira Liga."
+  },
+  "header": {
+    "home": "Inicio",
+    "pro": "Pro",
+    "guide": "Guía"
+  },
+  "leagues": {
+    "top7": "Top 7 Ligas",
+    "top5": "Top 5 Ligas"
+  },
+  "metrics": {
+    "goals-per-90": "Goles por 90",
+    "xg-per-90": "xG por 90",
+    "shots-on-target-per-90": "Disparos a puerta por 90",
+    "shots-on-target-pct": "Disparos a puerta %",
+    "passes-completed": "Pases completados",
+    "pass-accuracy-pct": "Precisión de pases %",
+    "possession-pct": "Posesión %",
+    "positional-attacks-per-90": "Ataques posicionales por 90",
+    "counter-attacks-per-90": "Contraataques por 90",
+    "touches-in-the-box-per-90": "Toques en el área por 90",
+    "goals-conceded-per-90": "Goles concedidos por 90",
+    "sot-against-per-90": "Disparos a puerta en contra por 90",
+    "defensive-duels-per-90": "Duelos defensivos por 90",
+    "defensive-duel-pct": "Duelos defensivos %",
+    "aerial-duels-per-90": "Duelos aéreos por 90",
+    "aerial-duels-pct": "Duelos aéreos %",
+    "passes-per-possession": "Pases por posesión",
+    "ppda": "PPDA"
+  },
+  "tooltip": {
+    "median-lines": "Mostrar líneas medianas",
+    "showMedianLines": "Mostrar líneas medianas",
+    "hideMedianLines": "Ocultar líneas medianas",
+    "select-all": "Seleccionar todos los equipos",
+    "selectAll": "Seleccionar todos los equipos",
+    "unselectAll": "Deseleccionar todos los equipos",
+    "screenshot": "Descargar gráfico como imagen",
+    "xg-line-title": "Línea G = xG",
+    "xg-line-above": "Los equipos por encima de esta línea están marcando más goles de los esperados.",
+    "xg-line-below": "Los equipos por debajo de esta línea están marcando menos goles de los esperados.",
+    "xg-line-right": "Los equipos a la derecha de esta línea están marcando más goles de los esperados.",
+    "xg-line-left": "Los equipos a la izquierda de esta línea están marcando menos goles de los esperados."
+  },
+  "promo": {
+    "radar-link": "Comparar Equipos con Radares",
+    "pro-link": "Pro para Gráficos de Jugadores"
+  },
+  "search": {
+    "placeholder": "Introduce un nombre de equipo o jugador...",
+    "placeholder2": "Buscar equipo..."
+  },
+  "positions": {
+    "goalkeeper": "Portero",
+    "centreback": "Central",
+    "fullback": "Lateral",
+    "midfielder": "Centrocampista",
+    "winger": "Extremo",
+    "striker": "Delantero"
+  },
+  "footer": {
+    "rights": "© Todos los derechos reservados",
+    "privacy": "Privacidad",
+    "contact": "Contacto",
+    "about": "Acerca de"
+  }
+} 

@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "title": "DataMB | Takım Grafikleri",
+    "description": "En İyi 7 Lig takım istatistiklerini grafikleştirin. Takım performansını görselleştirin ve Premier Lig, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Primeira Liga'daki takımlar için Gol, Yenen goller, xG, İsabetli şutlar, Pres, Savunma düelloları, Pas tamamlama ve daha fazla metriği analiz edin."
+  },
+  "header": {
+    "home": "Ana Sayfa",
+    "pro": "Pro",
+    "guide": "Rehber"
+  },
+  "leagues": {
+    "top7": "En İyi 7 Lig",
+    "top5": "En İyi 5 Lig"
+  },
+  "metrics": {
+    "goals-per-90": "90 dakika başına goller",
+    "xg-per-90": "90 dakika başına xG",
+    "shots-on-target-per-90": "90 dakika başına isabetli şutlar",
+    "shots-on-target-pct": "İsabetli şut %",
+    "passes-completed": "Tamamlanan paslar",
+    "pass-accuracy-pct": "Pas isabeti %",
+    "possession-pct": "Top hakimiyeti %",
+    "positional-attacks-per-90": "90 dakika başına pozisyonel hücumlar",
+    "counter-attacks-per-90": "90 dakika başına kontra hücumlar",
+    "touches-in-the-box-per-90": "90 dakika başına RCS topla buluşma",
+    "goals-conceded-per-90": "90 dakika başına yenen goller",
+    "sot-against-per-90": "90 dakika başına karşı isabetli şutlar",
+    "defensive-duels-per-90": "90 dakika başına savunma düelloları",
+    "defensive-duel-pct": "Savunma düello %",
+    "aerial-duels-per-90": "90 dakika başına hava düelloları",
+    "aerial-duels-pct": "Hava düelloları %",
+    "passes-per-possession": "Top hakimiyeti başına paslar",
+    "ppda": "PPDA"
+  },
+  "tooltip": {
+    "median-lines": "Medyan çizgilerini göster",
+    "showMedianLines": "Medyan çizgilerini göster",
+    "hideMedianLines": "Medyan çizgilerini gizle",
+    "select-all": "Tüm takımları seç",
+    "selectAll": "Tüm takımları seç",
+    "unselectAll": "Tüm takımları seçme",
+    "screenshot": "Grafiği resim olarak indir",
+    "xg-line-title": "G = xG Çizgisi",
+    "xg-line-above": "Bu çizginin üstündeki takımlar beklenenden daha fazla gol atıyor.",
+    "xg-line-below": "Bu çizginin altındaki takımlar beklenenden daha az gol atıyor.",
+    "xg-line-right": "Bu çizginin sağındaki takımlar beklenenden daha fazla gol atıyor.",
+    "xg-line-left": "Bu çizginin solundaki takımlar beklenenden daha az gol atıyor."
+  },
+  "promo": {
+    "radar-link": "Takımları Radar ile Karşılaştır",
+    "pro-link": "Oyuncu Grafikleri için Pro Alın"
+  },
+  "search": {
+    "placeholder": "Takım veya oyuncu adı girin...",
+    "placeholder2": "Takım ara..."
+  },
+  "positions": {
+    "goalkeeper": "Kaleci",
+    "centreback": "Stoper",
+    "fullback": "Bek",
+    "midfielder": "Orta saha",
+    "winger": "Kanat",
+    "striker": "Forvet"
+  },
+"footer": {
+  "rights": "© Tüm Hakları Saklıdır",
+  "privacy": "Gizlilik",
+  "contact": "İletişim",
+  "about": "Hakkında"
+}
+} 
