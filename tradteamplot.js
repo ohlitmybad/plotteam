@@ -205,11 +205,12 @@ function toggleDarkMode() {
                     finalCtx.drawImage(watermarkImg, x, y, watermarkWidth, watermarkHeight);
                     finalCtx.restore();
                     
-                    const dataURL = finalCanvas.toDataURL('image/png', 1.0);
-                    const link = document.createElement('a');
-                    link.download = 'DataMB Screenshot.png';
-                    link.href = dataURL;
-                    link.click();
+    canvas.toBlob(blob => {
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = 'DataMB Screenshot.png';
+      link.click();
+    }, 'image/png');
                 };
                 watermarkImg.src = 'https://datamb.football/logo.png';
             }).catch(function(error) {
