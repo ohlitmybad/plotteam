@@ -1293,3 +1293,42 @@ body.dark-mode .sub-footer svg {
     fill: #aeaeae;
 }
 
+
+
+.floating-buttons {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    z-index: 1000;
+  }
+  .floating-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    text-decoration: none;
+    position: relative;
+    border: none;
+    line-height: 1;
+    box-shadow: var(--shadow);
+    background: var(--container-bg);
+  }
+  .floating-button i {
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+  }
+  .guide-button i {
+    font-size: 15px;
+  }
+  .pro-button i {
+    font-size: 12px;
+  }
