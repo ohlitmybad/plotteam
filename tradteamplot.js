@@ -77,7 +77,7 @@ return;
 }
 
     
-    fetch(`locales/${language}.json`)
+fetch(`https://datamb.football/plotteam/locales/${language}.json`)
       .then(response => {
         // Don't throw an error, just return null if response is not OK
         return response.ok ? response.json() : null;
