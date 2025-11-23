@@ -20,22 +20,25 @@
     <meta property="og:image" content="https://datamb.football/vignettes/teamplots.png">
     <title data-i18n="meta.title">DataMB | Plot Teams</title>
     <script>
-        (function() {
-            var width = window.innerWidth;
-            var viewportMeta = document.querySelector('meta[name="viewport"]');
-            if (viewportMeta) {
-      if (width < 645) {
-                
-            var initialScale = width / 645;
-      viewportMeta.setAttribute('content', 'width=device-width, initial-scale=' + initialScale + ', user-scalable=no');
-      } else {
-                  var fixedScale = 1;
-          viewportMeta.setAttribute('content', 'width=device-width, initial-scale=' + fixedScale + ', user-scalable=no');
+  (function() {
+      // Check if device is Android
+      var isAndroid = /Android/i.test(navigator.userAgent);
       
-        }
-          } 
-      })();
-      </script>
+      if (isAndroid) {
+          var width = window.innerWidth;
+          var viewportMeta = document.querySelector('meta[name="viewport"]');
+          if (viewportMeta) {
+              if (width < 770) {
+                  var initialScale = width / 770;
+                  viewportMeta.setAttribute('content', 'width=device-width, initial-scale=' + initialScale + ', user-scalable=no');
+              } else {
+                  var fixedScale = 1;
+                  viewportMeta.setAttribute('content', 'width=device-width, initial-scale=' + fixedScale + ', user-scalable=no');
+              }
+          }
+      }
+  })();
+</script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
     <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
@@ -279,5 +282,6 @@
 
 </body>
 </html>
+
 
 
