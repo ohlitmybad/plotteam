@@ -306,9 +306,9 @@
         }
 
         @keyframes circlePulse {
-            0% { r: 6; }
-            50% { r: 9; }
-            100% { r: 6; }
+            0% { r: 7.7; }
+            50% { r: 12; }
+            100% { r: 7.7; }
         }
 
         .team-label.search-match {
