@@ -42,6 +42,11 @@
             line-height: 1.6;
             transition: background-color 0.3s, color 0.3s;
         }
+@media (hover: none) and (pointer: coarse) {
+    body {
+        width: 770px;
+    }
+}
 
         .header {
             background-color: var(--header-bg);
@@ -749,7 +754,6 @@ body.dark-mode .language-option {
     justify-content: center;
     transform: translateY(-1px);
 }
-@media screen and (max-width: 550px) { .header .navigation { display: none; } }
 
         /* Enhanced Dark Mode Styles */
         .dark-mode .chart-wrapper {
