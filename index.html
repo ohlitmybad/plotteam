@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
     <meta name="language" content="en">
     <link rel="canonical" href="https://datamb.football/plotteam/" />
 <link rel="alternate" hreflang="x-default" href="https://datamb.football/plotteam"/>
@@ -19,25 +19,17 @@
     <meta name="twitter:image" content="https://datamb.football/vignettes/teamplots.png">
     <meta property="og:image" content="https://datamb.football/vignettes/teamplots.png">
     <title data-i18n="meta.title">DataMB | Plot Teams</title>
-    <script>
-  (function() {
-      // Check if device is Android
-      var isAndroid = /Android/i.test(navigator.userAgent);
-      
-      if (isAndroid) {
-          var width = window.innerWidth;
-          var viewportMeta = document.querySelector('meta[name="viewport"]');
-          if (viewportMeta) {
-              if (width < 770) {
-                  var initialScale = width / 770;
-                  viewportMeta.setAttribute('content', 'width=device-width, initial-scale=' + initialScale + ', user-scalable=no');
-              } else {
-                  var fixedScale = 1;
-                  viewportMeta.setAttribute('content', 'width=device-width, initial-scale=' + fixedScale + ', user-scalable=no');
-              }
-          }
-      }
-  })();
+<script>
+	
+const width = window.innerWidth;
+
+if (width <= 770) {
+  const scale = width / 770;
+  const widthPercent = 100 / scale;
+
+  document.documentElement.style.setProperty('--dynamic-width', widthPercent + '%');
+  document.documentElement.style.setProperty('--dynamic-scale', scale);
+}
 </script>
     <script src="https://d3js.org/d3.v5.min.js"></script>
     <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
@@ -47,7 +39,37 @@
     <link rel="stylesheet" href="plotteam.css">
 
 
-  <header class="header">
+  
+  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7677714701428206"
+     crossorigin="anonymous"></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PSBMXX80EF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PSBMXX80EF');
+</script>
+  
+  
+  
+  
+</head>
+<div class="search-input-modal" id="searchInputModal">
+    <div class="search-input-container">
+        <input type="text" id="searchInputforModal" data-i18n="search.placeholder" placeholder="Enter a team or player name...">
+        <div id="autocompleteBoxmodal"></div>
+    </div>
+  </div>
+  <script src="/modal.js"></script>  
+
+
+<body>
+	<div class="dark-mode-toggle mobile-only" onclick="toggleDarkMode()">
+        <div class="toggle-icon"></div>
+    </div>
+	<div id="full-page"> 
+	<header class="header">
     <div class="logo">
       <a href="https://datamb.football">
         <img src="https://datamb.football/logo.png" alt="Football team statistics comparison. Radar comparison tool. Visualise and compare team data from the top 7 leagues : Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Primeira Liga" /></a>
@@ -74,31 +96,6 @@
     </div>
     </div></div>
   </header>
-  <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7677714701428206"
-     crossorigin="anonymous"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PSBMXX80EF"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-PSBMXX80EF');
-</script>
-  
-  
-  
-  
-</head>
-<div class="search-input-modal" id="searchInputModal">
-    <div class="search-input-container">
-        <input type="text" id="searchInputforModal" data-i18n="search.placeholder" placeholder="Enter a team or player name...">
-        <div id="autocompleteBoxmodal"></div>
-    </div>
-  </div>
-  <script src="/modal.js"></script>  
-
-
-<body>
     <div class="container">
         <div class="chart-wrapper">
             <div class="controls">
@@ -233,9 +230,7 @@
         </div>
     </div>
 
-    <div class="dark-mode-toggle mobile-only" onclick="toggleDarkMode()">
-        <div class="toggle-icon"></div>
-    </div>
+    
 
     <script src="/plotteam.js"></script>
   <script src="tradteamplot.js"></script>
@@ -279,9 +274,6 @@
     </nav>
   </div>
 </footer>
-
+	</div>
 </body>
 </html>
-
-
-
