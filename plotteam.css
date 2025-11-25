@@ -770,7 +770,6 @@ align-items: center;
 justify-content: center;
 transform: translateY(-1px);
 }
-@media screen and (max-width: 550px) { .header .navigation { display: none; } }
 
 /* Enhanced Dark Mode Styles */
 .dark-mode .chart-wrapper {
