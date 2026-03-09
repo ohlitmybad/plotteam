@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "title": "DataMB | Grafik Tim",
+    "description": "Visualisasikan statistik tim dari 7 Liga Teratas. Analisis performa tim dengan metrik seperti Gol, Gol kebobolan, xG, Tembakan tepat sasaran, Pressing, Duel bertahan, Akurasi umpan dan lebih banyak lagi untuk tim di Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Liga Portugal."
+  },
+  "header": {
+    "home": "Beranda",
+    "pro": "Pro",
+    "guide": "Panduan"
+  },
+  "leagues": {
+    "top7": "7 Liga Teratas",
+    "top5": "5 Liga Teratas"
+  },
+  "metrics": {
+    "goals-per-90": "Gol per 90",
+    "xg-per-90": "xG per 90",
+    "shots-on-target-per-90": "Tembakan tepat sasaran per 90",
+    "shots-on-target-pct": "Tembakan tepat sasaran %",
+    "passes-completed": "Umpan berhasil",
+    "pass-accuracy-pct": "Akurasi umpan %",
+    "possession-pct": "Penguasaan bola %",
+    "positional-attacks-per-90": "Serangan posisional per 90",
+    "counter-attacks-per-90": "Serangan balik per 90",
+    "touches-in-the-box-per-90": "Sentuhan di kotak per 90",
+    "goals-conceded-per-90": "Gol kebobolan per 90",
+    "sot-against-per-90": "Tembakan tepat sasaran lawan per 90",
+    "defensive-duels-per-90": "Duel bertahan per 90",
+    "defensive-duel-pct": "Duel bertahan %",
+    "aerial-duels-per-90": "Duel udara per 90",
+    "aerial-duels-pct": "Duel udara %",
+    "passes-per-possession": "Umpan per penguasaan",
+    "ppda": "PPDA"
+  },
+  "tooltip": {
+    "median-lines": "Tampilkan garis median",
+    "showMedianLines": "Tampilkan garis median",
+    "hideMedianLines": "Sembunyikan garis median",
+    "select-all": "Pilih semua tim",
+    "selectAll": "Pilih semua tim",
+    "unselectAll": "Batalkan pilihan semua tim",
+    "screenshot": "Unduh grafik sebagai gambar",
+    "xg-line-title": "Garis G = xG",
+    "xg-line-above": "Tim di atas garis ini mencetak lebih banyak gol dari yang diharapkan.",
+    "xg-line-below": "Tim di bawah garis ini mencetak lebih sedikit gol dari yang diharapkan.",
+    "xg-line-right": "Tim di kanan garis ini mencetak lebih banyak gol dari yang diharapkan.",
+    "xg-line-left": "Tim di kiri garis ini mencetak lebih sedikit gol dari yang diharapkan."
+  },
+  "promo": {
+    "radar-link": "Bandingkan tim dengan Radar",
+    "pro-link": "Dapatkan Pro untuk grafik pemain"
+  },
+  "search": {
+    "placeholder": "Masukkan nama tim atau pemain...",
+    "placeholder2": "Cari tim..."
+  },
+  "positions": {
+    "goalkeeper": "Penjaga gawang",
+    "centreback": "Bek tengah",
+    "fullback": "Bek sayap",
+    "midfielder": "Gelandang",
+    "winger": "Pemain sayap",
+    "striker": "Penyerang"
+  },
+  "footer": {
+    "rights": "© Hak Cipta Dilindungi",
+    "privacy": "Privasi",
+    "contact": "Kontak",
+    "about": "Tentang"
+  }
+}

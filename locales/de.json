@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "title": "DataMB | Teams plotten",
+    "description": "Plotten Sie Team-Statistiken der Top-7-Ligen. Visualisieren Sie Teamleistungen und analysieren Sie verschiedene Metriken wie Tore, Gegentore, xG, Schüsse aufs Tor, Pressing, Defensivduelle, Passgenauigkeit und mehr für Teams in Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Liga Portugal."
+  },
+  "header": {
+    "home": "Startseite",
+    "pro": "Pro",
+    "guide": "Anleitung"
+  },
+  "leagues": {
+    "top7": "Top 7 Ligen",
+    "top5": "Top 5 Ligen"
+  },
+  "metrics": {
+    "goals-per-90": "Tore pro 90",
+    "xg-per-90": "xG pro 90",
+    "shots-on-target-per-90": "Schüsse aufs Tor pro 90",
+    "shots-on-target-pct": "Schüsse aufs Tor %",
+    "passes-completed": "Pässe gespielt",
+    "pass-accuracy-pct": "Passgenauigkeit %",
+    "possession-pct": "Ballbesitz %",
+    "positional-attacks-per-90": "Positionsangriffe pro 90",
+    "counter-attacks-per-90": "Konterangriffe pro 90",
+    "touches-in-the-box-per-90": "Ballkontakte im Strafraum pro 90",
+    "goals-conceded-per-90": "Gegentore pro 90",
+    "sot-against-per-90": "Schüsse aufs Tor gegen pro 90",
+    "defensive-duels-per-90": "Defensivduelle pro 90",
+    "defensive-duel-pct": "Defensivduelle %",
+    "aerial-duels-per-90": "Kopfballduelle pro 90",
+    "aerial-duels-pct": "Kopfballduelle %",
+    "passes-per-possession": "Pässe pro Ballbesitz",
+    "ppda": "PPDA"
+  },
+  "tooltip": {
+    "median-lines": "Median-Linien anzeigen",
+    "showMedianLines": "Median-Linien anzeigen",
+    "hideMedianLines": "Median-Linien ausblenden",
+    "select-all": "Alle Teams auswählen",
+    "selectAll": "Alle Teams auswählen",
+    "unselectAll": "Alle Teams abwählen",
+    "screenshot": "Diagramm als Bild herunterladen",
+    "xg-line-title": "T = xG Linie",
+    "xg-line-above": "Teams über dieser Linie erzielen mehr Tore als erwartet.",
+    "xg-line-below": "Teams unter dieser Linie erzielen weniger Tore als erwartet.",
+    "xg-line-right": "Teams rechts dieser Linie erzielen mehr Tore als erwartet.",
+    "xg-line-left": "Teams links dieser Linie erzielen weniger Tore als erwartet."
+  },
+  "promo": {
+    "radar-link": "Teams mit Radar vergleichen",
+    "pro-link": "Pro für Spieler-Plots holen"
+  },
+  "search": {
+    "placeholder": "Team- oder Spielername eingeben...",
+    "placeholder2": "Team suchen..."
+  },
+  "positions": {
+    "goalkeeper": "Torwart",
+    "centreback": "Innenverteidiger",
+    "fullback": "Außenverteidiger",
+    "midfielder": "Mittelfeldspieler",
+    "winger": "Flügelspieler",
+    "striker": "Stürmer"
+  },
+  "footer": {
+    "rights": "© Alle Rechte vorbehalten",
+    "privacy": "Datenschutz",
+    "contact": "Kontakt",
+    "about": "Über uns"
+  }
+}
