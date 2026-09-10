@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no">
+    <meta name="language" content="en">
+    <link rel="canonical" href="https://datamb.football/plotteam/" />
+<link rel="alternate" hreflang="x-default" href="https://datamb.football/plotteam"/>
+<link rel="alternate" hreflang="en" href="https://datamb.football/plotteam/?lang=en" />
+<link rel="alternate" hreflang="fr" href="https://datamb.football/plotteam/?lang=fr" />
+<link rel="alternate" hreflang="es" href="https://datamb.football/plotteam/?lang=es" />
+<link rel="alternate" hreflang="tr" href="https://datamb.football/plotteam/?lang=tr" />
+<link rel="alternate" hreflang="de" href="https://datamb.football/plotteam/?lang=de" />
+<link rel="alternate" hreflang="it" href="https://datamb.football/plotteam/?lang=it" />
+<link rel="alternate" hreflang="pt" href="https://datamb.football/plotteam/?lang=pt" />
+<link rel="alternate" hreflang="id" href="https://datamb.football/plotteam/?lang=id" />
+<link rel="shortcut icon" type="image/x-icon" href="https://datamb.football/favicon.ico">
+    <meta name="description" data-i18n="meta.description" content="Plot Top 7 League team statistics. Visualize team performance and analyze multiple metrics such as Goals, Goals conceded, xG, Shots on target, Pressing, Defensive duels, Pass completion and more for teams in Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Liga Portugal.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="@DataMB_">
+    <meta name="twitter:title" content="DataMB | Plot Teams">
+    <meta name="twitter:description" content="Generate scatter plots for Top 7 League teams">
+    <meta name="twitter:image" content="https://datamb.football/vignettes/teamplots.png">
+    <meta property="og:image" content="https://datamb.football/vignettes/teamplots.png">
+    <title data-i18n="meta.title">DataMB | Plot Teams</title>
+    <script>
+  (function() {
+      // Check if device is Android
+      var isAndroid = /Android/i.test(navigator.userAgent);
+      
+      if (isAndroid) {
+          var width = window.innerWidth;
+          var viewportMeta = document.querySelector('meta[name="viewport"]');
+          if (viewportMeta) {
+              if (width < 770) {
+                  var initialScale = width / 770;
+                  viewportMeta.setAttribute('content', 'width=device-width, initial-scale=' + initialScale + ', user-scalable=no');
+              } else {
+                  var fixedScale = 1;
+                  viewportMeta.setAttribute('content', 'width=device-width, initial-scale=' + fixedScale + ', user-scalable=no');
+              }
+          }
+      }
+  })();
+</script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+    <script src="https://code.iconify.design/iconify-icon/1.0.7/iconify-icon.min.js"></script>
+    <script src="https://html2canvas.hertzen.com/dist/html2canvas.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="plotteam.css">
+
+    <script data-cfasync="false" src="https://cmp.gatekeeperconsent.com/min.js"></script>
+    <script data-cfasync="false" src="https://the.gatekeeperconsent.com/cmp.min.js"></script>
+      <script async src="//www.ezojs.com/ezoic/sa.min.js"></script>
+    <script>
+        window.ezstandalone = window.ezstandalone || {};
+        ezstandalone.cmd = ezstandalone.cmd || [];
+                ezstandalone.cmd.push(function () {
+            ezstandalone.showAds();
+        });
+    </script>
+
+  <header class="header">
+    <div class="logo">
+      <a href="https://datamb.football">
+        <img src="https://datamb.football/logo.png" alt="Football team statistics comparison. Radar comparison tool. Visualise and compare team data from the top 7 leagues : Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Liga Portugal" /></a>
+        <div class="logo-text"><a href="https://datamb.football">&nbsp;Teams</a></div>
+    </div>
+    <nav class="navigation">
+      <a href="https://datamb.football" class="button10" data-i18n="header.home">Home</a>
+      <a href="https://datamb.football/join" class="button10" data-i18n="header.pro">Pro</a>
+      <a href="https://datamb.football/guide" class="button10" data-i18n="header.guide">Guide</a>
+    </nav>
+    <div class="header-right">
+    <div class="search-container">
+      <button id="searchButtonmodal"><iconify-icon icon="ion:search-outline"></iconify-icon></button>
+  </div>
+    <div class="language-switcher-container">
+      <button class="language-button" id="languageButton">
+        <iconify-icon icon="heroicons:globe-alt"></iconify-icon>
+      </button>
+      <div class="language-dropdown" id="languageDropdown">
+<a href="?lang=en" class="language-option"><iconify-icon icon="flag:gb-4x3"></iconify-icon>English</a>
+<a href="?lang=fr" class="language-option"><iconify-icon icon="flag:fr-4x3"></iconify-icon>Français</a>
+<a href="?lang=es" class="language-option"><iconify-icon icon="flag:es-4x3"></iconify-icon>Español</a>
+<a href="?lang=it" class="language-option"><iconify-icon icon="flag:it-4x3"></iconify-icon>Italiano</a>
+<a href="?lang=de" class="language-option"><iconify-icon icon="flag:de-4x3"></iconify-icon>Deutsch</a>
+<a href="?lang=tr" class="language-option"><iconify-icon icon="flag:tr-4x3"></iconify-icon>Türkçe</a>
+<a href="?lang=pt" class="language-option"><iconify-icon icon="flag:pt-4x3"></iconify-icon>Português</a>
+<a href="?lang=id" class="language-option"><iconify-icon icon="flag:id-4x3"></iconify-icon>Indonesia</a>
+      </div>
+    </div></div>
+  </header>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-PSBMXX80EF"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PSBMXX80EF');
+</script>
+  
+  
+  
+  
+</head>
+<div class="search-input-modal" id="searchInputModal">
+    <div class="search-input-container">
+        <input type="text" id="searchInputforModal" data-i18n="search.placeholder" placeholder="Enter a team or player name...">
+        <div id="autocompleteBoxmodal"></div>
+    </div>
+  </div>
+  <script src="/modal.js"></script>  
+
+
+<body>
+    <div class="container">
+        <div class="chart-wrapper">
+            <div class="controls">
+                <select id="select-x" style="display: none;"></select>
+                <select id="select-y" style="display: none;"></select>
+                <select id="select-league" style="display: none;" onchange="updateChart()">
+                    <option value="all">Top 7 Leagues</option>
+                    <option value="Top 5 Leagues">Top 5 Leagues</option>
+                    <option value="Premier League">Premier League</option>
+                    <option value="La Liga">La Liga</option>
+                    <option value="Bundesliga">Bundesliga</option>
+                    <option value="Serie A">Serie A</option> 
+                    <option value="Ligue 1">Ligue 1</option>
+                    <option value="Eredivisie">Eredivisie</option>
+                    <option value="Liga Portugal">Liga Portugal</option>
+                </select>
+                
+                <!-- Custom X metric selector -->
+                <div class="metric-select-container">
+                    <div class="metric-select-trigger" id="x-metric-trigger">
+                        <span data-i18n="metrics.goals-per-90">Goals per 90</span>
+                    </div>
+                    <div class="metric-select-options" id="x-metric-options">
+                        <!-- Options will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Custom Y metric selector -->
+                <div class="metric-select-container">
+                    <div class="metric-select-trigger" id="y-metric-trigger">
+                        <span data-i18n="metrics.xg-per-90">xG per 90</span>
+                    </div>
+                    <div class="metric-select-options" id="y-metric-options">
+                        <!-- Options will be populated by JavaScript -->
+                    </div>
+                </div>
+                
+                <!-- Custom league selector with flag icons -->
+                <div class="custom-select-container">
+                    <div class="custom-select-trigger" id="league-select-trigger">
+                        <iconify-icon icon="emojione:flag-for-flag-european-union" width="18" height="18"></iconify-icon>
+                        <span data-i18n="leagues.top7">Top 7 Leagues</span>
+                    </div>
+                    <div class="custom-select-options multi-select" id="league-select-options">
+                        <div class="custom-select-option selected" data-value="all">
+                            <iconify-icon icon="emojione:flag-for-flag-european-union" width="18" height="18"></iconify-icon>
+                            <span data-i18n="leagues.top7">Top 7 Leagues</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Top 5 Leagues">
+                            <iconify-icon icon="emojione:flag-for-flag-european-union" width="18" height="18"></iconify-icon>
+                            <span data-i18n="leagues.top5">Top 5 Leagues</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Premier League">
+                            <iconify-icon icon="emojione:flag-for-united-kingdom" width="18" height="18"></iconify-icon>
+                            <span>Premier League</span>
+                        </div>
+                        <div class="custom-select-option" data-value="La Liga">
+                            <iconify-icon icon="emojione:flag-for-spain" width="18" height="18"></iconify-icon>
+                            <span>La Liga</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Bundesliga">
+                            <iconify-icon icon="emojione:flag-for-germany" width="18" height="18"></iconify-icon>
+                            <span>Bundesliga</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Serie A">
+                            <iconify-icon icon="emojione:flag-for-italy" width="18" height="18"></iconify-icon>
+                            <span>Serie A</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Ligue 1">
+                            <iconify-icon icon="emojione:flag-for-france" width="18" height="18"></iconify-icon>
+                            <span>Ligue 1</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Eredivisie">
+                            <iconify-icon icon="emojione:flag-for-netherlands" width="18" height="18"></iconify-icon>
+                            <span>Eredivisie</span>
+                        </div>
+                        <div class="custom-select-option" data-value="Liga Portugal">
+                            <iconify-icon icon="emojione:flag-for-portugal" width="18" height="18"></iconify-icon>
+                            <span>Liga Portugal</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <input type="text" id="search-bar" data-i18n="search.placeholder2" placeholder="Search team...">
+                <div class="btn-tooltip">
+                    <button id="toggle-median-lines" class="btn btn-outline btn-icon">
+                        <div class="icon">
+                            <i class="ion-stats-bars"></i>
+                        </div>
+                    </button>
+                    <span class="btn-tooltip-text" id="median-lines-tooltip" data-i18n="tooltip.median-lines">Show median lines</span>
+                </div>
+                <div class="btn-tooltip">
+                    <button class="btn btn-outline btn-icon" id="select-all-button" onclick="selectAllCircles()">
+                        <div class="icon">
+                            <i class="ion-ios-circle-filled" id="select-icon"></i>
+                        </div>
+                    </button>
+                    <span class="btn-tooltip-text" id="select-all-tooltip" data-i18n="tooltip.select-all">Select all teams</span>
+                </div>
+                <div class="btn-tooltip">
+                    <button class="btn btn-outline btn-icon" onclick="takeScreenshot()">
+                        <div class="icon">
+                            <i class="ion-camera"></i>
+                        </div>
+                    </button>
+                    <span class="btn-tooltip-text" data-i18n="tooltip.screenshot">Download chart as image</span>
+                </div>
+            </div>
+       
+            <div class="chart-container">
+              <svg id="scatter-plot"></svg>
+            </div>
+
+            <div class="legend" id="league-legend">
+              <!-- Legend items will be added here dynamically -->
+            </div>
+        </div>
+
+        <div class="promo-links-container">
+            <a href="https://datamb.football/teamradars" class="promo-link radar-link">
+                <iconify-icon icon="mdi:radar" width="20" height="20"></iconify-icon>
+                <span data-i18n="promo.radar-link">Compare Teams with Radars</span>
+            </a>
+            <a href="https://datamb.football/join" class="promo-link pro-link">
+                <iconify-icon icon="mdi:account-star" width="20" height="20"></iconify-icon>
+                <span data-i18n="promo.pro-link">Get Pro for Player Plots</span>
+            </a>
+            <div class="dark-mode-toggle pc-only" onclick="toggleDarkMode()">
+                <div class="toggle-icon"></div>
+            </div>
+        </div>
+    </div>
+
+    <div class="dark-mode-toggle mobile-only" onclick="toggleDarkMode()">
+        <div class="toggle-icon"></div>
+    </div>
+
+    <div id="ezoic-pub-ad-placeholder-165"></div>
+    <script src="/plotteam.js"></script>
+  <script src="tradteamplot.js"></script>
+
+<footer class="footer">
+ 
+  <div class="google-play-container">
+
+  <a href='https://play.google.com/store/apps/details?id=com.datamb.datamb.webviewflutter&pcampaignid=pcampaignidMKT-Other-global-all-co-prtnr-py-PartBadge-Mar2515-1'><img alt='Get it on Google Play' src='https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png'></a>
+<a href='https://apps.apple.com/app/datamb/id6456224067?l=en-GB'><img alt='Download on the App Store' src='https://developer.apple.com/assets/elements/badges/download-on-the-app-store.svg'></a></div>
+<div class="logo">
+    <img src="https://datamb.football/logo.png" alt="Compare football stats. Visualise data from Premier League, La Liga, Bundesliga, Serie A, Ligue 1, Eredivisie, Liga Portugal. Player and Team profiles, Radar comparison tool, Plots." />
+  </div>
+
+  <p class="description">DataMB</p>
+  <p class="info" data-i18n="footer.rights">© All Rights Reserved</p>
+  <hr class="divider" />
+  <div class="sub-footer">
+    <nav>
+      <a class="terms" target="_blank" href="https://datamb.football/privacy" data-i18n="footer.privacy">Privacy</a>
+              <a class="privacy" href="https://datamb.football/guide#contact" data-i18n="footer.contact">Contact</a>
+      <a class="glossary" href="https://datamb.football/guide#aboutus" data-i18n="footer.about">About</a>
+    </nav>
+    <nav>
+      <a target="_blank" href="https://twitter.com/datamb_">
+        <svg width="23" height="22" fill="#000000" xmlns="http://www.w3.org/2000/svg">
+          <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z" />
+        </svg>
+      </a>
+    </nav>
+  </div>
+</footer>
+
+</body>
+</html>
+
+
